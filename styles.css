@@ -8,7 +8,8 @@
     --bg-1: #eef2ff;
     --bg-2: #f7fbff;
     --accent-1: #6c5ce7;
-    --muted: #64748b; 
+    --muted: #64748b;    
+    --colW: 320px; 
 }
 
 *{box-sizing:border-box}
@@ -17,6 +18,7 @@ body{
     font-family: 'Quicksand', sans-serif;
     background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     color:#0f172a;
+    min-height: 200vh;
 }
 
 body{
@@ -189,7 +191,7 @@ body{
 }
 
 @media (max-width:880px){
-    .board{flex-direction:column}
+    .board{flex-direction:row}
     .task-input-row{justify-content:center}
     .input.title{flex-basis:100%}
 }
