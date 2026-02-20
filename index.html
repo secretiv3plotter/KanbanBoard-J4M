@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Kanban</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
-</body>
-</html>
 <body>
 
     <div class="kanban-wrapper">
@@ -40,21 +39,21 @@
             <div class="column" data-column="todo">
                 <h2>To-Do</h2>
                 <div class="task-list">
-                    <!-- <div class="task" draggable="true">Sample task A</div> -->
+                    <div class="task">Sample task A</div>
                 </div>
             </div>
 
             <div class="column" data-column="doing">
                 <h2>Doing</h2>
                 <div class="task-list">
-                    <!-- <div class="task" draggable="true">Sample task B</div> -->
+                    <div class="task">Sample task B</div>
                 </div>
             </div>
 
             <div class="column" data-column="done">
                 <h2>Done</h2>
                 <div class="task-list">
-                    <!-- <div class="task" draggable="true">Sample task C</div> -->
+                    <div class="task">Sample task C</div>
                 </div>
             </div>
 
@@ -72,25 +71,6 @@
             </div>
         </footer>
 
-        </div>
-        <script src="kanban.js"></script>
-
-        <div id="editModal" class="modal hidden">
-        <div class="modal-content">
-            <h3>Edit Task</h3>
-
-            <label>Title</label>
-            <input type="text" id="modalTitle" class="input title">
-            <br>
-            <label>Due Date</label>
-            <input type="date" id="modalDue" class="input date">
-
-            <div class="modal-buttons">
-                <button id="saveTaskBtn" class="btn save">Save</button>
-                <button id="deleteTaskBtn" class="btn delete">Delete</button>
-                <button id="closeModalBtn" class="btn cancel">Cancel</button>
-            </div>
-        </div>
     </div>
 
 </body>

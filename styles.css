@@ -1,15 +1,20 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+}
+
 :root{
     --bg-1: #eef2ff;
     --bg-2: #f7fbff;
     --accent-1: #6c5ce7;
-    --muted: #64748b;    
-    --colW: 320px; 
+    --muted: #64748b; 
 }
 
 *{box-sizing:border-box}
 body{
     margin:0;
-    font-family:'Quicksand',sans-serif;
+    font-family: 'Quicksand', sans-serif;
     background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     color:#0f172a;
 }
@@ -19,11 +24,12 @@ body{
     font-family:'Quicksand',sans-serif;
     background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     color:#0f172a;
+    min-height: 200vh;
 }
 
-.kanban-wrapper{
+.kanban-wrapper{    
     max-width:1200px;
-    margin:28px auto;
+    margin:0 auto;
     padding:18px;
     display:flex;
     flex-direction:column;
@@ -48,9 +54,18 @@ body{
     color:#0f172a
 }
 
-.top-controls{
-    display:flex;
-    justify-content:center;
+.top-controls {
+    display: flex;
+    justify-content: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    padding: 12px 0;
+
+    box-shadow: 0 6px 12px rgba(15,23,42,0.06);
 }
 
 .task-input{
@@ -112,25 +127,6 @@ body{
     font-weight:600
 }
 
-.btn.save{
-    background:linear-gradient(var(--accent-1),#8e7bff);
-    color:white;
-    font-weight:600
-}
-
-.btn.delete{
-    background:linear-gradient(#ff5e5e,rgb(255, 135, 135));
-    color:white;
-    font-weight:600
-}
-
-.btn.cancel{
-    background:linear-gradient(#9c9c9c,#848484);
-    color:white;
-    font-weight:600
-}
-
-
 .board{
     display:flex;
     gap:18px;
@@ -163,9 +159,6 @@ body{
 }
 
 .task{
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
     background:linear-gradient(180deg,#ffffff, #f3f4f6);
     color:#0f172a;
     padding:12px 14px;
@@ -173,36 +166,6 @@ body{
     border-radius:10px;
     box-shadow:0 4px 10px rgba(2,6,23,0.04);
     border-left:4px solid rgba(0,0,0,0.03);
-}
-
-/* .task-controls button {
-    margin-left: 5px;
-} */
-
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hidden {
-    display: none;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-}
-
-.modal-buttons {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
 }
 
 .site-footer{
@@ -226,18 +189,7 @@ body{
 }
 
 @media (max-width:880px){
-    .board {
-        flex-direction: row;       
-        overflow-x: auto;         
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-    }
-
-    .column {
-        min-width: 280px;        
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-    }
+    .board{flex-direction:column}
     .task-input-row{justify-content:center}
     .input.title{flex-basis:100%}
 }
