@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!moveIndicator) {
             moveIndicator = document.createElement('div');
             moveIndicator.id = 'moveIndicator';
-            moveIndicator.textContent = 'Move mode — navigate to a task, press 1/2/3 to move. Esc to cancel.';
+            moveIndicator.textContent = 'Move mode — (1) Todo, (2) Doing, (3) Done. Esc to cancel.';
             Object.assign(moveIndicator.style, {
                 position: 'fixed',
                 bottom: '12px',
@@ -259,7 +259,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     active.click();
                     return;
                 }
-                // otherwise prevent accidental save/submit when typing in modal inputs
+                // allow Enter to behave normally when focused in modal inputs/selects
+                if (activeIsInput && modal.contains(active)) {
+                    return;
+                }
+                // otherwise prevent accidental Enter actions
                 e.preventDefault();
                 return;
             }
