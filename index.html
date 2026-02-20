@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Kanban</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -32,31 +33,31 @@
             </form>
         </section>
 
-        <div class="board">
+        <div class="board-resize-box">
+            <div class="board">
+                <div class="column" data-column="todo">
+                    <h2>To-Do</h2>
+                    <div class="task-list">
+                        <div class="task">Sample task A</div>
+                    </div>
+                </div>
 
-            <div class="column" data-column="todo">
-                <h2>To-Do</h2>
-                <div class="task-list">
-                    <div class="task">Sample task A</div>
+                <div class="column" data-column="doing">
+                    <h2>Doing</h2>
+                    <div class="task-list">
+                        <div class="task">Sample task B</div>
+                    </div>
+                </div>
+
+                <div class="column" data-column="done">
+                    <h2>Done</h2>
+                    <div class="task-list">
+                        <div class="task">Sample task C</div>
+                    </div>
                 </div>
             </div>
-
-            <div class="column" data-column="doing">
-                <h2>Doing</h2>
-                <div class="task-list">
-                    <div class="task">Sample task B</div>
-                </div>
-            </div>
-
-            <div class="column" data-column="done">
-                <h2>Done</h2>
-                <div class="task-list">
-                    <div class="task">Sample task C</div>
-                </div>
-            </div>
-
         </div>
-
+        
     </div>
 
         <footer class="site-footer">

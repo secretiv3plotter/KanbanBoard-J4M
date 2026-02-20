@@ -2,6 +2,8 @@
     --bg-1: #eef2ff;
     --bg-2: #f7fbff;
     --accent-1: #6c5ce7;
+    --muted: #64748b;    
+    --colW: 320px; 
 }
 
 *{box-sizing:border-box}
@@ -172,7 +174,18 @@ body{
 }
 
 @media (max-width:880px){
-    .board{flex-direction:column}
+    .board {
+        flex-direction: row;       
+        overflow-x: auto;         
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+    }
+
+    .column {
+        min-width: 280px;        
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
     .task-input-row{justify-content:center}
     .input.title{flex-basis:100%}
 }
