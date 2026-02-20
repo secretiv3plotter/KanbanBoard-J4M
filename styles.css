@@ -26,9 +26,10 @@ body{
     font-family:'Quicksand',sans-serif;
     background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     color:#0f172a;
+    min-height: 200vh;
 }
 
-.kanban-wrapper{
+.kanban-wrapper{    
     max-width:1200px;
     margin:0 auto;
     padding:18px;
@@ -173,9 +174,6 @@ body{
 }
 
 .task{
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
     background:linear-gradient(180deg,#ffffff, #f3f4f6);
     color:#0f172a;
     padding:12px 14px;
