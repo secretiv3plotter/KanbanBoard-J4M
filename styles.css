@@ -112,6 +112,25 @@ body{
     font-weight:600
 }
 
+.btn.save{
+    background:linear-gradient(var(--accent-1),#8e7bff);
+    color:white;
+    font-weight:600
+}
+
+.btn.delete{
+    background:linear-gradient(#ff5e5e,rgb(255, 135, 135));
+    color:white;
+    font-weight:600
+}
+
+.btn.cancel{
+    background:linear-gradient(#9c9c9c,#848484);
+    color:white;
+    font-weight:600
+}
+
+
 .board{
     display:flex;
     gap:18px;
@@ -144,6 +163,9 @@ body{
 }
 
 .task{
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
     background:linear-gradient(180deg,#ffffff, #f3f4f6);
     color:#0f172a;
     padding:12px 14px;
@@ -151,6 +173,36 @@ body{
     border-radius:10px;
     box-shadow:0 4px 10px rgba(2,6,23,0.04);
     border-left:4px solid rgba(0,0,0,0.03);
+}
+
+/* .task-controls button {
+    margin-left: 5px;
+} */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.modal-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .site-footer{
