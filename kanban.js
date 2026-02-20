@@ -81,7 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderTasks() {
 
         document.querySelectorAll(".task-list").forEach(col => {
-            col.innerHTML = "";
+            while (col.firstChild) {
+                col.removeChild(col.firstChild);
+            }
         });
 
         const tasks = getTasks();
@@ -401,22 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
         saveTasks(updated);
     }
 
-    function editTask(taskId) {
-
-        const tasks = getTasks();
-        const task = tasks.find(t => t.id === taskId);
-
-        const newTitle = prompt("Edit task title:", task.title);
-        if (newTitle === null) return;
-
-        const newDue = prompt("Edit due date (YYYY-MM-DD):", task.due);
-
-        task.title = newTitle.trim() || task.title;
-        task.due = newDue;
-
-        saveTasks(tasks);
-        renderTasks();
-    }
+    // `editTask` removed — editing is handled via `openModal()` and modal controls
 
     function deleteTask(taskId, record = false) {
         const tasks = getTasks();
