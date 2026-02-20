@@ -67,24 +67,31 @@
 
         <div id="editModal" class="modal hidden">
         <div class="modal-content">
-            <h3>Edit Task</h3>
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button id="closeModalBtn" class="modal-close">✕</button>
+            </div>
+            <div class="modal-row">
+                <label>Title</label>
+                <input type="text" id="modalTitle" class="input">
+            </div>
 
-            <label>Title</label>
-            <input type="text" id="modalTitle" class="input title">
-            <br>
-            <label>Due Date</label>
-            <input type="date" id="modalDue" class="input date">
-            <br>
-            <label>Status</label>
-            <select id="modalStatus" class="input select">
-                        <option value="todo">To-Do</option>
-                        <option value="doing">Doing</option>
-                        <option value="done">Done</option>
-            </select>
+            <div class="modal-row">
+                <label>Due Date</label>
+                <input type="date" id="modalDue" class="input">
+            </div>
+
+            <div class="modal-row">
+                <label>Status</label>
+                <select id="modalStatus" class="input select">
+                    <option value="todo">To-Do</option>
+                    <option value="doing">Doing</option>
+                    <option value="done">Done</option>
+                </select>
+            </div>
 
             <div class="modal-buttons">
                 <button id="deleteTaskBtn" class="btn delete">Delete</button>
-                <button id="closeModalBtn" class="btn cancel">Cancel</button>
                 <button id="saveTaskBtn" class="btn save">Save</button>
 
             </div>

@@ -140,12 +140,6 @@ body{
     font-weight:600
 }
 
-.btn.cancel{
-    background:linear-gradient(#9c9c9c,#848484);
-    color:white;
-    font-weight:600
-}
-
 
 .board{
     display:flex;
@@ -206,7 +200,24 @@ body{
     display: none;
 }
 
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
 
+.modal-header h3 {
+    margin: 0;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #64748b;
+}
 
 .modal-content {
     background: white;
@@ -214,13 +225,29 @@ body{
     border-radius: 8px;
     width: 300px;
     gap: 16px;
-    align-items: center;      /* horizontal centering */
-    justify-content: center;  /* vertical spacing */
-    text-align: center;    
+    align-items: center;     
+    justify-content: space-between;  
+}
+
+.modal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.modal-row label {
+    font-weight: 600;
+}
+
+.modal-row .input {
+    width: 65%;
 }
 
 .modal-buttons {
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
     display: flex;
     justify-content: space-between;
 }
