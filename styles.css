@@ -191,9 +191,6 @@ body{
     border-left:4px solid rgba(0,0,0,0.03);
 }
 
-/* .task-controls button {
-    margin-left: 5px;
-} */
 
 .modal {
     position: fixed;
@@ -209,11 +206,17 @@ body{
     display: none;
 }
 
+
+
 .modal-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
     width: 300px;
+    gap: 16px;
+    align-items: center;      /* horizontal centering */
+    justify-content: center;  /* vertical spacing */
+    text-align: center;    
 }
 
 .modal-buttons {

@@ -10,17 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveBtn = document.getElementById("saveTaskBtn");
     const deleteBtn = document.getElementById("deleteTaskBtn");
     const closeBtn = document.getElementById("closeModalBtn");
+    const modalStatus = document.getElementById("modalStatus");
 
     let currentEditingId = null;
 
-    // ===============================
-    // LOAD TASKS ON START
-    // ===============================
     renderTasks();
 
-    // ===============================
-    // ADD TASK
-    // ===============================
     addBtn.addEventListener("click", () => {
 
         const title = titleInput.value.trim();
@@ -46,9 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderTasks();
     });
 
-    // ===============================
-    // GET TASKS FROM LOCALSTORAGE
-    // ===============================
     function getTasks() {
         return JSON.parse(localStorage.getItem("tasks")) || [];
     }
@@ -57,9 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
-    // ===============================
-    // RENDER TASKS
-    // ===============================
     function renderTasks() {
 
         document.querySelectorAll(".task-list").forEach(col => {
@@ -79,9 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ===============================
-    // CREATE TASK ELEMENT
-    // ===============================
     function createTaskElement(task) {
 
         const div = document.createElement("div");
@@ -114,9 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return div;
     }
-    // ===============================
-    // UPDATE TASK STATUS
-    // ===============================
+
     function updateTaskStatus(taskId, newStatus) {
 
         const tasks = getTasks();
@@ -161,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentEditingId = task.id;
         modalTitle.value = task.title;
         modalDue.value = task.due || "";
+        modalStatus.value = task.status;
         modal.classList.remove("hidden");
     }
 
@@ -178,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         task.title = modalTitle.value.trim();
         task.due = modalDue.value;
+        task.status = modalStatus.value; // ✅ FIXED
 
         saveTasks(tasks);
         renderTasks();
@@ -196,9 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeBtn.addEventListener("click", closeModal);
 
-    // ===============================
-    // DRAG & DROP
-    // ===============================
     document.querySelectorAll(".task-list").forEach(column => {
 
         column.addEventListener("dragover", (e) => {
