@@ -1,15 +1,24 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+}
+
 :root{
     --bg-1: #eef2ff;
     --bg-2: #f7fbff;
     --accent-1: #6c5ce7;
+    --muted: #64748b;    
+    --colW: 320px; 
 }
 
 *{box-sizing:border-box}
 body{
     margin:0;
-    font-family:'Quicksand',sans-serif;
+    font-family: 'Quicksand', sans-serif;
     background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
     color:#0f172a;
+    min-height: 200vh;
 }
 
 body{
@@ -21,7 +30,7 @@ body{
 
 .kanban-wrapper{
     max-width:1200px;
-    margin:28px auto;
+    margin:0 auto;
     padding:18px;
     display:flex;
     flex-direction:column;
@@ -46,9 +55,18 @@ body{
     color:#0f172a
 }
 
-.top-controls{
-    display:flex;
-    justify-content:center;
+.top-controls {
+    display: flex;
+    justify-content: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    padding: 12px 0;
+
+    box-shadow: 0 6px 12px rgba(15,23,42,0.06);
 }
 
 .task-input{
@@ -224,7 +242,7 @@ body{
 }
 
 @media (max-width:880px){
-    .board{flex-direction:column}
+    .board{flex-direction:row}
     .task-input-row{justify-content:center}
     .input.title{flex-basis:100%}
 }
