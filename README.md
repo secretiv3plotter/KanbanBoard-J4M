@@ -17,5 +17,5 @@
 | **Esc** | Exit |
 | **N** | Create a new task |
 | **E** | Edit the focused task |
-| **M** | Enter Move mode: navigate to a task, then press **1** to transfer to (To Do), **2** (Doing), **3** (Done) |
+| **M** | Enter Move mode: navigate to a task, then press **1** (To Do), **2** (Doing), **3** (Done) |
 | **Backspace** | Delete the focused task |
