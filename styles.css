@@ -7,6 +7,7 @@
 :root{
     --bg-1: #F2F2F3;
     --bg-2: #DBDBDC;
+    --bg-3: #f2f2f2;
     --accent-1: #6c5ce7;
     --muted: #64748b;    
     --colW: 375px; 
@@ -41,10 +42,12 @@ body {
 
 .task-input{
     width:100%;
-    background: var(--bg-2);
-    padding:12px 14px;
+    background: var(--bg-3);
     border-radius:12px;
-    box-shadow:0 6px 18px rgba(16,24,40,0.08);
+    padding:14px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 6px 14px rgba(16,24,40,0.05);
 }
 
 .task-input-row{
@@ -148,9 +151,9 @@ body {
 }
 
 .task{
-    /* display: flex;
+    display: flex;
     justify-content: space-between;
-    align-items: center; */
+    align-items: center;
     background:#ffffff;
     color:#0f172a;
     padding:12px 14px;

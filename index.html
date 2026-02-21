@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Kanban</title>
     <link rel="stylesheet" href="styles.css">
@@ -18,7 +17,7 @@
         </header>
 
         <section class="top-controls">
-            <form class="task-input" onsubmit="return false;">
+            <form class="task-input">
                 <div class="task-input-row">
                     <label class="task-input-label">Add a task</label>
                     <input type="text" id="TASK_TITLE" class="input title" placeholder="Task title">
@@ -35,17 +34,14 @@
 
         <div class="board-resize-box">
             <div class="board">
-
                 <div class="column" data-column="todo" tabindex="0">
                     <h2>To-Do</h2>
                     <div class="task-list"></div>
                 </div>
-
                 <div class="column" data-column="doing" tabindex="0">
                     <h2>Doing</h2>
                     <div class="task-list"></div>
                 </div>
-
                 <div class="column" data-column="done" tabindex="0">
                     <h2>Done</h2>
                     <div class="task-list"></div>
