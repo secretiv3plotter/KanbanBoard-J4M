@@ -14,7 +14,7 @@
 | **↑ / ↓** | Navigate tasks within a column |
 | **← / →** | Switch between columns |
 | **Enter** | Select a task or option |
-| **Esc** | Exit selection or mode |
+| **Esc** | Exit |
 | **N** | Create a new task |
 | **E** | Edit the focused task |
 | **M** | Enter Move mode: navigate to a task, then press **1** (To Do), **2** (Doing), **3** (Done) |
