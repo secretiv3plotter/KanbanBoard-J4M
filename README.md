@@ -1,18 +1,21 @@
 # Offline Kanban Board by J4M
 
-Run **kanban.html** on a browser.
-You can then start creating a task, assign its status and due date.
-Drag and drop a task to easily update its status.
-Select a task to edit/delete it.
+## Getting Started
+1. Open **`kanban.html`** in your browser.  
+2. Start creating tasks, assign statuses, and set due dates.  
+3. Drag and drop tasks to quickly update their status.  
+4. Click a task to edit or delete it.
 
-Keyboard shortcuts:
-**Tab** → Move focus between columns, tasks, and controls
-**Arrow Keys (↑ ↓)** → Navigate tasks within a column
-**Arrow Keys (← →)** → Switch between columns
-**Enter** → Select
-**Esc** → Exit
-**N** → Create new task
-**E** → Edit a focused task
-**M** → Move mode
-    Navigate to a task then press (1) to-do, (2) doing, (3) done
-**Backspace** → Delete a focused task
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| **Tab** | Move focus between columns, tasks, and controls |
+| **↑ / ↓** | Navigate tasks within a column |
+| **← / →** | Switch between columns |
+| **Enter** | Select a task or option |
+| **Esc** | Exit selection or mode |
+| **N** | Create a new task |
+| **E** | Edit the focused task |
+| **M** | Enter Move mode: navigate to a task, then press **1** (To Do), **2** (Doing), **3** (Done) |
+| **Backspace** | Delete the focused task |
