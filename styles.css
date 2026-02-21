@@ -32,6 +32,12 @@ body {
     gap:18px;
 }
 
+.site-header{
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+
 .top-controls {
     display: flex;
     justify-content: center;
@@ -58,7 +64,7 @@ body {
 }
 
 .task-input-label{
-    font-weight:600;
+    font-weight:60;
     color:var(--muted);
     margin-right:6px;
     min-width:90px;
@@ -133,8 +139,7 @@ body {
     padding:14px;
     display:flex;
     flex-direction:column;
-    min-height:500px;
-    box-shadow:0 6px 14px rgba(16,24,40,0.05);
+    min-height: 500px;
 }
 
 .column h2{
@@ -160,7 +165,6 @@ body {
     margin-bottom:10px;
     border-radius:10px;
     box-shadow:0 4px 10px rgba(2,6,23,0.04);
-    border-left:4px solid rgba(0,0,0,0.03);
 }
 
 
