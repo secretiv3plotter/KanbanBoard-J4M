@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const addBtn = document.querySelector(".btn.add");
-    const titleInput = document.getElementById("taskTitle");
-    const columnSelect = document.getElementById("taskColumn");
-    const dueInput = document.getElementById("taskDue");
-    const modal = document.getElementById("editModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalDue = document.getElementById("modalDue");
-    const saveBtn = document.getElementById("saveTaskBtn");
-    const deleteBtn = document.getElementById("deleteTaskBtn");
-    const closeBtn = document.getElementById("closeModalBtn");
-    const modalStatus = document.getElementById("modalStatus");
+    const $addTaskButton = document.querySelector(".btn.add");
+    const $taskTitleInput = document.getElementById("TASK_TITLE");
+    const $taskColumnSelect = document.getElementById("TASK_COLUMN");
+    const $taskDueInput = document.getElementById("TASK_DUE");
+
+    const $editModal = document.getElementById("EDIT_MODAL");
+    const $modalTitleInput = document.getElementById("MODAL_TITLE");
+    const $modalDueInput = document.getElementById("MODAL_DUE");
+    const $modalStatusSelect = document.getElementById("MODAL_STATUS");
+
+    const $saveTaskButton = document.getElementById("SAVE_TASK_BTN");
+    const $deleteTaskButton = document.getElementById("DELETE_TASK_BTN");
+    const $closeModalButton = document.getElementById("CLOSE_MODAL_BTN");
 
     let currentEditingId = null;
     let mode = "normal"; // normal | add | edit | move
@@ -22,11 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderTasks();
 
-    addBtn.addEventListener("click", () => {
+    $addTaskButton.addEventListener("click", () => {
 
-        const title = titleInput.value.trim();
-        const status = columnSelect.value;
-        const due = dueInput.value;
+        const title = $taskTitleInput.value.trim();
+        const status = $taskColumnSelect.value;
+        const due = $taskDueInput.value;
 
         if (!title) return;
 
@@ -41,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
         tasks.push(newTask);
         saveTasks(tasks);
 
-        titleInput.value = "";
-        dueInput.value = "";
+        $taskTitleInput.value = "";
+        $taskDueInput.value = "";
 
         renderTasks();
     });
@@ -242,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // ESC handling — cancel modes and close modal
         if (e.key === 'Escape') {
-            if (!modal.classList.contains('hidden')) {
+            if (!$editModal.classList.contains('hidden')) {
                 closeModal();
             }
             mode = 'normal';
@@ -254,15 +256,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // If modal open: allow typing in inputs; only let Enter activate button-like elements inside modal
-        if (!modal.classList.contains('hidden')) {
+        if (!$editModal.classList.contains('hidden')) {
             if (e.key === 'Enter') {
                 // if a button in the modal is focused, activate it
-                if (activeIsButtonLike && modal.contains(active)) {
+                if (activeIsButtonLike && $editModal.contains(active)) {
                     active.click();
                     return;
                 }
                 // allow Enter to behave normally when focused in modal inputs/selects
-                if (activeIsInput && modal.contains(active)) {
+                if (activeIsInput && $editModal.contains(active)) {
                     return;
                 }
                 // otherwise prevent accidental Enter actions
@@ -276,8 +278,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if ((e.key === 'n' || e.key === 'N') && !activeIsInput) {
             e.preventDefault();
             mode = 'add';
-            titleInput.focus();
-            titleInput.select();
+            $taskTitleInput.focus();
+            $taskTitleInput.select();
             return;
         }
 
@@ -439,45 +441,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openModal(task) {
         currentEditingId = task.id;
-        modalTitle.value = task.title;
-        modalDue.value = task.due || "";
-        modalStatus.value = task.status;
-        modal.classList.remove("hidden");
+        $modalTitleInput.value = task.title;
+        $modalDueInput.value = task.due || "";
+        $modalStatusSelect.value = task.status;
+        $editModal.classList.remove("hidden");
         // focus input for immediate editing
         setTimeout(() => {
-            modalTitle.focus();
-            modalTitle.select();
+            $modalTitleInput.focus();
+            $modalTitleInput.select();
         }, 0);
-        modal.dataset.taskId = task.id;
+        $editModal.dataset.taskId = task.id;
     }
 
     function closeModal() {
-        modal.classList.add("hidden");
+        $editModal.classList.add("hidden");
         currentEditingId = null;
         delete modal.dataset.taskId;
     }
 
-    saveBtn.addEventListener("click", () => {
-        const id = currentEditingId || modal.dataset.taskId;
+    $saveTaskButton.addEventListener("click", () => {
+        const id = currentEditingId || $editModal.dataset.taskId;
         const tasks = getTasks();
         const task = tasks.find(t => t.id === id);
         if (!task) return;
-        task.title = modalTitle.value.trim();
-        task.due = modalDue.value;
-        task.status = modalStatus.value;
+        task.title = $modalTitleInput.value.trim();
+        task.due = $modalDueInput.value;
+        task.status = $modalStatusSelect.value;
         saveTasks(tasks);
         renderTasks();
         closeModal();
     });
 
-    deleteBtn.addEventListener("click", () => {
-        const id = currentEditingId || modal.dataset.taskId;
+    $deleteTaskButton.addEventListener("click", () => {
+        const id = currentEditingId || $editModal.dataset.taskId;
         if (!id) return;
         deleteTask(id, true);
         closeModal();
     });
 
-    closeBtn.addEventListener("click", closeModal);
+    $closeModalButton.addEventListener("click", closeModal);
 
     document.querySelectorAll(".task-list").forEach(column => {
 
