@@ -1,0 +1,20 @@
+.kanban {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.kanban__controls {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.kanban__board-shell {
+    width: 100%;
+}

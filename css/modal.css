@@ -1,0 +1,66 @@
+.task-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.task-modal--hidden {
+    display: none;
+}
+
+.task-modal__content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.task-modal__title {
+    margin: 0;
+}
+
+.task-modal__close {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #64748b;
+}
+
+.task-modal__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.task-modal__label {
+    font-weight: 600;
+}
+
+.task-modal__control {
+    width: 65%;
+    box-sizing: border-box;
+}
+
+.task-modal__buttons {
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-between;
+}

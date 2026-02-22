@@ -1,0 +1,74 @@
+.kanban-board {
+    display: flex;
+    gap: 18px;
+    align-items: stretch;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+}
+
+.kanban-board__column {
+    flex: 0 0 var(--column-width);
+    min-width: var(--column-width);
+    max-width: var(--column-width);
+    background: var(--bg-surface);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+    box-shadow: 0 6px 14px rgba(16, 24, 40, 0.05);
+}
+
+.kanban-board__column-title {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    text-align: center;
+    color: #0f172a;
+}
+
+.kanban-board__task-list {
+    flex: 1;
+    overflow: auto;
+    padding: 6px;
+}
+
+.kanban-task {
+    background: #ffffff;
+    color: #0f172a;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(2, 6, 23, 0.04);
+    border-left: 4px solid rgba(0, 0, 0, 0.03);
+}
+
+.kanban-task.kanban-task--selected {
+    outline: 2px solid var(--color-accent);
+}
+
+.kanban-task.kanban-task--pending-delete {
+    opacity: 0.7;
+}
+
+.kanban-task.kanban-task--move-target {
+    border-left-color: var(--color-accent);
+}
+
+.kanban-task.kanban-task--dragging {
+    opacity: 0.6;
+}
+
+.kanban-task__due {
+    display: block;
+    color: var(--color-muted);
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+@media (max-width: 880px) {
+    .kanban-board {
+        flex-direction: row;
+    }
+}

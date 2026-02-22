@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Quicksand";
+    src: url("../assets/fonts/Quicksand-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+}
+
+:root {
+    --bg-surface: #f2f2f3;
+    --bg-muted: #dbdbdc;
+    --color-accent: #6c5ce7;
+    --color-muted: #64748b;
+    --column-width: 360px;
+}
+
+.app {
+    margin: 0;
+    font-family: "Quicksand", sans-serif;
+    color: #0f172a;
+    min-height: 100vh;
+    background: url("../assets/images/bg.png") no-repeat center center fixed;
+    background-size: cover;
+}

@@ -2,45 +2,65 @@
 <html>
 <head>
 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keyboard Kanban</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="app">
+    <button type="button" id="SHORTCUT_HELP_OPEN_BTN" class="shortcut-help__trigger" aria-label="Show keyboard shortcuts">?</button>
 
-    <div class="kanban-wrapper">
-        <section class="top-controls">
-            <form class="task-input" onsubmit="return false;">
-                <div class="task-input-row">
-                    <label class="task-input-label">Add a task</label>
-                    <input type="text" id="TASK_TITLE" class="input title" placeholder="Task title">
-                    <select id="TASK_COLUMN" class="input select">
+    <div id="SHORTCUT_HELP_MODAL" class="shortcut-help-modal shortcut-help-modal--hidden">
+        <div class="shortcut-help-modal__panel">
+            <div class="shortcut-help-modal__header">
+                <h6 class="shortcut-help-modal__title">Keyboard Shortcuts</h6>
+                <button type="button" id="SHORTCUT_HELP_CLOSE_BTN" class="shortcut-help-modal__close" aria-label="Close keyboard shortcuts">&times;</button>
+            </div>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">N</span> Add task</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">E</span> Edit focused task</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">M</span> Move mode</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">1 / 2 / 3</span> Move task to To-Do / Doing / Done</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">Tab / Arrow keys</span> Navigate board</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">Backspace</span> Delete focused task</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">Ctrl+Z</span> Undo delete</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">Enter</span> Select</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">Esc</span> Close</p>
+        </div>
+    </div>
+
+    <div class="kanban">
+        <section class="kanban__controls">
+            <form class="task-form">
+                <div class="task-form__row">
+                    <label class="task-form__label">Add a task</label>
+                    <input type="text" id="TASK_TITLE" class="form-control form-control--title" placeholder="Task title">
+                    <select id="TASK_COLUMN" class="form-control form-control--select">
                         <option value="todo">To-Do</option>
                         <option value="doing">Doing</option>
                         <option value="done">Done</option>
                     </select>
-                    <input type="date" id="TASK_DUE" class="input date">
-                    <button class="btn add">Add</button>
+                    <input type="date" id="TASK_DUE" class="form-control form-control--date">
+                    <button type="button" class="button button--add">Add</button>
                 </div>
             </form>
         </section>
 
-        <div class="board-resize-box">
-            <div class="board">
+        <div class="kanban__board-shell">
+            <div class="kanban-board">
 
-                <div class="column" data-column="todo" tabindex="0">
-                    <h2>To-Do</h2>
-                    <div class="task-list"></div>
+                <div class="kanban-board__column" data-column="todo" tabindex="0">
+                    <h2 class="kanban-board__column-title">To-Do</h2>
+                    <div class="kanban-board__task-list"></div>
                 </div>
 
-                <div class="column" data-column="doing" tabindex="0">
-                    <h2>Doing</h2>
-                    <div class="task-list"></div>
+                <div class="kanban-board__column" data-column="doing" tabindex="0">
+                    <h2 class="kanban-board__column-title">Doing</h2>
+                    <div class="kanban-board__task-list"></div>
                 </div>
 
-                <div class="column" data-column="done" tabindex="0">
-                    <h2>Done</h2>
-                    <div class="task-list"></div>
+                <div class="kanban-board__column" data-column="done" tabindex="0">
+                    <h2 class="kanban-board__column-title">Done</h2>
+                    <div class="kanban-board__task-list"></div>
                 </div>
 
             </div>
@@ -48,51 +68,52 @@
 
     </div>
 
-        <footer class="site-footer">
-            <div class="site-footer-inner">
-                <h4 class="footer-header">Kanban Board </h4>
-                <h5 class="footer-subheader">by J4M</h5>
-                    <p>Jana Leigh Rabe | jsrabe@up.edu.ph</p>
-                    <p> Janna Gutierrez | jsgutierrez8@up.edu.ph</p>
-                    <p>Joshua Alinsolorin | jaalinsolorin@up.edu.ph</p>
-                    <p>Jesse Keane Catedral | jscatedral@up.edu.ph</p>
-                    <p> Meloshane Perater| msperater@up.edu.ph </p>
+        <footer class="app-footer">
+            <div class="app-footer__inner">
+                <h4 class="app-footer__title">Kanban Board</h4>
+                <h5 class="app-footer__subtitle">by J4M</h5>
+                    <p class="app-footer__line">Jana Leigh Rabe | jsrabe@up.edu.ph</p>
+                    <p class="app-footer__line">Janna Gutierrez | jsgutierrez8@up.edu.ph</p>
+                    <p class="app-footer__line">Joshua Alinsolorin | jaalinsolorin@up.edu.ph</p>
+                    <p class="app-footer__line">Jesse Keane Catedral | jscatedral@up.edu.ph</p>
+                    <p class="app-footer__line">Meloshane Perater | msperater@up.edu.ph</p>
             </div>
         </footer>
 
-        <div id="EDIT_MODAL" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Edit Task</h3>
-                <button id="CLOSE_MODAL_BTN" class="modal-close">✕</button>
+        <div id="EDIT_MODAL" class="task-modal task-modal--hidden">
+        <div class="task-modal__content">
+            <div class="task-modal__header">
+                <h3 class="task-modal__title">Edit Task</h3>
+                <button id="CLOSE_MODAL_BTN" class="task-modal__close">&times;</button>
             </div>
-            <div class="modal-row">
-                <label>Title</label>
-                <input type="text" id="MODAL_TITLE" class="input">
-            </div>
-
-            <div class="modal-row">
-                <label>Due Date</label>
-                <input type="date" id="MODAL_DUE" class="input">
+            <div class="task-modal__row">
+                <label class="task-modal__label">Title</label>
+                <input type="text" id="MODAL_TITLE" class="form-control task-modal__control">
             </div>
 
-            <div class="modal-row">
-                <label>Status</label>
-                <select id="MODAL_STATUS" class="input select">
+            <div class="task-modal__row">
+                <label class="task-modal__label">Due Date</label>
+                <input type="date" id="MODAL_DUE" class="form-control task-modal__control">
+            </div>
+
+            <div class="task-modal__row">
+                <label class="task-modal__label">Status</label>
+                <select id="MODAL_STATUS" class="form-control form-control--select task-modal__control">
                     <option value="todo">To-Do</option>
                     <option value="doing">Doing</option>
                     <option value="done">Done</option>
                 </select>
             </div>
 
-            <div class="modal-buttons">
-                <button id="DELETE_TASK_BTN" class="btn delete">Delete</button>
-                <button id="SAVE_TASK_BTN" class="btn save">Save</button>
+            <div class="task-modal__buttons">
+                <button type="button" id="DELETE_TASK_BTN" class="button button--delete">Delete</button>
+                <button type="button" id="SAVE_TASK_BTN" class="button button--save">Save</button>
 
             </div>
 
         </div>
     </div>
-<script src="kanban.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
+
