@@ -1,3 +1,11 @@
+@import url("../shared/kanban.css");
+@import url("../features/forms.css");
+@import url("../features/board.css");
+@import url("../features/task-modal.css");
+@import url("../features/footer.css");
+@import url("../features/feedback.css");
+@import url("../features/shortcut-help.css");
+
 @font-face {
     font-family: "Quicksand";
     src: url("../../assets/fonts/Quicksand-VariableFont_wght.ttf") format("truetype");
@@ -48,11 +56,3 @@
 .text-lg {
     font-size: var(--text-lg);
 }
-
-@import url("../shared/kanban.css");
-@import url("../features/forms.css");
-@import url("../features/board.css");
-@import url("../features/task-modal.css");
-@import url("../features/footer.css");
-@import url("../features/feedback.css");
-@import url("../features/shortcut-help.css");
