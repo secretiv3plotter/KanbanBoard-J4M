@@ -1,4 +1,4 @@
-import { MODES, STATUS_BY_SHORTCUT } from "./constants.js";
+import { MODES, STATUS_BY_SHORTCUT } from "../../shared/constants.js";
 
 export class KeyboardController {
     constructor({ state, elements, taskService, ui, modal, onChange }) {

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban Board by J4M</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/app/styles.css">
 </head>
 <body class="app">
     <button type="button" id="SHORTCUT_HELP_OPEN_BTN" class="shortcut-help__trigger" aria-label="Show keyboard shortcuts">?</button>
@@ -40,7 +40,7 @@
                         <option value="done">Done</option>
                     </select>
                     <input type="date" id="TASK_DUE" class="form-control form-control--date">
-                    <button type="button" class="button button--add">Add</button>
+                    <button type="button" class="action-button action-button--add">Add</button>
                 </div>
             </form>
         </section>
@@ -106,14 +106,14 @@
             </div>
 
             <div class="task-modal__buttons">
-                <button type="button" id="DELETE_TASK_BTN" class="button button--delete">Delete</button>
-                <button type="button" id="SAVE_TASK_BTN" class="button button--save">Save</button>
+                <button type="button" id="DELETE_TASK_BTN" class="action-button action-button--delete">Delete</button>
+                <button type="button" id="SAVE_TASK_BTN" class="action-button action-button--save">Save</button>
 
             </div>
 
         </div>
     </div>
-<script type="module" src="js/main.js"></script>
+<script type="module" src="js/app/main.js"></script>
 </body>
 </html>
 

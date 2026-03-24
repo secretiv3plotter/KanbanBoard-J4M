@@ -6,6 +6,24 @@
 3. Drag and drop tasks to quickly update their status.
 4. Click a task to edit or delete it.
 
+## Project Structure
+
+```text
+js/
+  app/
+  features/
+    board/
+    keyboard/
+    shortcut-help/
+    tasks/
+  shared/
+
+css/
+  app/
+  features/
+  shared/
+```
+
 ## Keyboard Shortcuts
 
 | Shortcut | Action |

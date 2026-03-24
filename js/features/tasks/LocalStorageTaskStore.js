@@ -1,6 +1,6 @@
 export class LocalStorageTaskStore {
-    constructor(storageKey = "tasks") {
-        this.storageKey = storageKey;
+    constructor() {
+        this.storageKey = "tasks";
     }
 
     getTasks() {

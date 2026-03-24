@@ -1,0 +1,58 @@
+@font-face {
+    font-family: "Quicksand";
+    src: url("../../assets/fonts/Quicksand-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+}
+
+:root {
+    --bg-surface: #f2f2f3;
+    --bg-muted: #dbdbdc;
+    --color-accent: #6c5ce7;
+    --color-muted: #64748b;
+    --column-width: 360px;
+    --font-weight-semi: 600;
+    --font-weight-bold: 700;
+    --text-sm: 0.875rem;
+    --text-md: 1rem;
+    --text-lg: 1.125rem;
+}
+
+.app {
+    margin: 0;
+    font-family: "Quicksand", sans-serif;
+    color: #0f172a;
+    min-height: 100vh;
+    background: url("../../assets/images/bg.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.font-semi {
+    font-weight: var(--font-weight-semi);
+}
+
+.font-bold {
+    font-weight: var(--font-weight-bold);
+}
+
+.font-sm,
+.text-sm {
+    font-size: var(--text-sm);
+}
+
+.font-md,
+.text-md {
+    font-size: var(--text-md);
+}
+
+.font-lg,
+.text-lg {
+    font-size: var(--text-lg);
+}
+
+@import url("../shared/kanban.css");
+@import url("../features/forms.css");
+@import url("../features/board.css");
+@import url("../features/task-modal.css");
+@import url("../features/footer.css");
+@import url("../features/feedback.css");
+@import url("../features/shortcut-help.css");

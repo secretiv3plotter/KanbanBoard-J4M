@@ -1,9 +1,17 @@
+import { createElement } from "../../shared/createElement.js";
+import { ColumnUI } from "./ColumnUI.js";
+import { TaskCardUI } from "./TaskCardUI.js";
+import { ToastUI } from "./ToastUI.js";
+
 export class BoardUI {
     constructor({ state, getTasks, onTaskClick, onDropTask }) {
         this.state = state;
         this.getTasks = getTasks;
         this.onTaskClick = onTaskClick;
         this.onDropTask = onDropTask;
+        this.columnUI = new ColumnUI();
+        this.taskCardUI = new TaskCardUI();
+        this.toastUI = new ToastUI();
         this.$moveIndicator = null;
     }
 
@@ -12,15 +20,15 @@ export class BoardUI {
     }
 
     getTaskLists() {
-        return Array.from(document.querySelectorAll(".kanban-board__task-list"));
+        return this.columnUI.getTaskLists();
     }
 
     getColumns() {
-        return Array.from(document.querySelectorAll(".kanban-board__column"));
+        return this.columnUI.getColumns();
     }
 
     getTasksInColumn($column) {
-        return Array.from($column.querySelectorAll(".kanban-task"));
+        return this.columnUI.getTasksInColumn($column);
     }
 
     renderTasks() {
@@ -44,7 +52,7 @@ export class BoardUI {
 
     appendTask(task) {
         const $task = this.createTaskElement(task);
-        const $taskList = document.querySelector(`.kanban-board__column[data-column="${task.status}"] .kanban-board__task-list`);
+        const $taskList = this.columnUI.getTaskListByStatus(task.status);
         if ($taskList) {
             $taskList.appendChild($task);
         }
@@ -59,40 +67,9 @@ export class BoardUI {
     }
 
     createTaskElement(task) {
-        const $task = document.createElement("div");
-        $task.classList.add("kanban-task");
-        $task.draggable = true;
-        $task.dataset.taskId = task.id;
-        $task.tabIndex = 0;
-        $task.setAttribute("role", "button");
-
-        const $title = document.createElement("span");
-        $title.className = "kanban-task__title";
-        $title.textContent = task.title;
-        $task.appendChild($title);
-
-        this.appendDueDate($task, task.due);
+        const $task = this.taskCardUI.createTaskElement(task);
         this.bindTaskEvents($task, task);
         return $task;
-    }
-
-    appendDueDate($task, dueDate) {
-        if (!dueDate) return;
-        const $due = document.createElement("span");
-        $due.className = "kanban-task__due";
-        $due.textContent = `Due: ${this.formatDueDate(dueDate)}`;
-        $task.appendChild($due);
-    }
-
-    formatDueDate(dueDate) {
-        const parsedDate = new Date(`${dueDate}T00:00:00`);
-        if (Number.isNaN(parsedDate.getTime())) {
-            return dueDate;
-        }
-        const day = parsedDate.getDate();
-        const month = parsedDate.toLocaleString("en-US", { month: "long" });
-        const year = parsedDate.getFullYear();
-        return `${day} ${month}, ${year}`;
     }
 
     bindTaskEvents($task, task) {
@@ -131,10 +108,10 @@ export class BoardUI {
     }
 
     createMoveIndicator() {
-        const $indicator = document.createElement("div");
-        $indicator.className = "move-indicator";
-        $indicator.textContent = "Move mode: (1) Todo, (2) Doing, (3) Done. Esc to cancel.";
-        return $indicator;
+        return createElement("div", {
+            className: "move-indicator",
+            textContent: "Move mode: (1) Todo, (2) Doing, (3) Done. Esc to cancel."
+        });
     }
 
     hideMoveIndicator() {
@@ -222,11 +199,7 @@ export class BoardUI {
     }
 
     showUndoToast() {
-        const $toast = document.createElement("div");
-        $toast.className = "undo-toast";
-        $toast.textContent = "Task deleted. Press Ctrl+Z to undo.";
-        document.body.appendChild($toast);
-        setTimeout(() => $toast.remove(), 5000);
+        this.toastUI.showUndoToast();
     }
 
     bindDragAndDrop() {
