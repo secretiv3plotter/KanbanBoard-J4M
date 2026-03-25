@@ -1,28 +1,9 @@
 # Offline Kanban Board by J4M
 
 ## Getting Started
-1. Open the live app: [Live Demo](https://secretiv3plotter.github.io/KanbanBoard-J4M/)
-2. Start creating tasks, assign statuses, and set due dates.
-3. Drag and drop tasks to quickly update their status.
-4. Click a task to edit or delete it.
-
-## Project Structure
-
-```text
-js/
-  app/
-  features/
-    board/
-    keyboard/
-    shortcut-help/
-    tasks/
-  shared/
-
-css/
-  app/
-  features/
-  shared/
-```
+1. Create tasks, assign statuses, and set due dates.
+2. Drag and drop tasks to quickly update their status.
+3. Click a task to edit or delete it.
 
 ## Keyboard Shortcuts
 
