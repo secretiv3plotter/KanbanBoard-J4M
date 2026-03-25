@@ -25,7 +25,7 @@
                     <label class="auth-form__label">Password</label>
                     <div class="password-field">
                         <input type="password" id="login-password" class="form-control auth-form__control" placeholder="Enter password">
-                        <button type="button" class="password-toggle" data-target="login-password" aria-label="Show password" title="Show password"></button>
+                        <button type="button" class="password-toggle" data-target="login-password">Show</button>
                     </div>
                 </div>
                 <button type="button" id="login-btn" class="action-button action-button--primary">Login</button>
@@ -49,19 +49,19 @@
                 </div>
                 <div class="auth-form__row">
                     <label class="auth-form__label">Password</label>
-                    <div class="password-field">
-                        <input type="password" id="register-password" class="form-control auth-form__control" placeholder="Choose password">
-                        <button type="button" class="password-toggle" data-target="register-password" aria-label="Show password" title="Show password"></button>
-                    </div>
+                    <input type="password" id="register-password" class="form-control auth-form__control" placeholder="Choose password">
                 </div>
                 <div class="auth-form__row">
                     <label class="auth-form__label">Confirm Password</label>
-                    <div class="password-field">
-                        <input type="password" id="register-confirm" class="form-control auth-form__control" placeholder="Confirm password">
-                        <button type="button" class="password-toggle" data-target="register-confirm" aria-label="Show password" title="Show password"></button>
-                    </div>
+                    <input type="password" id="register-confirm" class="form-control auth-form__control" placeholder="Confirm password">
                 </div>
                 <button type="button" id="register-btn" class="action-button action-button--primary">Register</button>
+                <div class="auth-form__row auth-form__row--google">
+                    <button type="button" class="action-button action-button--primary"
+                            onclick="window.location.href='google-login.html'">
+                        Continue with Google
+                    </button>
+                </div>
                 <p id="register-error" class="auth-error"></p>
             </div>
         </div>
