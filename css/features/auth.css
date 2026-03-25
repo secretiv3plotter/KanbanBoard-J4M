@@ -83,6 +83,31 @@
     box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.1);
 }
 
+.password-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.password-toggle {
+    padding: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--bg-muted);
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    stroke: #374151;
+}
+
 .action-button--primary {
     width: 200px;
     padding: 0.75rem;

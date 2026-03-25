@@ -23,7 +23,10 @@
                 </div>
                 <div class="auth-form__row">
                     <label class="auth-form__label">Password</label>
-                    <input type="password" id="login-password" class="form-control auth-form__control" placeholder="Enter password">
+                    <div class="password-field">
+                        <input type="password" id="login-password" class="form-control auth-form__control" placeholder="Enter password">
+                        <button type="button" class="password-toggle" data-target="login-password" aria-label="Show password" title="Show password"></button>
+                    </div>
                 </div>
                 <button type="button" id="login-btn" class="action-button action-button--primary">Login</button>
                 <div class="auth-form__row auth-form__row--google">
@@ -46,11 +49,17 @@
                 </div>
                 <div class="auth-form__row">
                     <label class="auth-form__label">Password</label>
-                    <input type="password" id="register-password" class="form-control auth-form__control" placeholder="Choose password">
+                    <div class="password-field">
+                        <input type="password" id="register-password" class="form-control auth-form__control" placeholder="Choose password">
+                        <button type="button" class="password-toggle" data-target="register-password" aria-label="Show password" title="Show password"></button>
+                    </div>
                 </div>
                 <div class="auth-form__row">
                     <label class="auth-form__label">Confirm Password</label>
-                    <input type="password" id="register-confirm" class="form-control auth-form__control" placeholder="Confirm password">
+                    <div class="password-field">
+                        <input type="password" id="register-confirm" class="form-control auth-form__control" placeholder="Confirm password">
+                        <button type="button" class="password-toggle" data-target="register-confirm" aria-label="Show password" title="Show password"></button>
+                    </div>
                 </div>
                 <button type="button" id="register-btn" class="action-button action-button--primary">Register</button>
                 <p id="register-error" class="auth-error"></p>

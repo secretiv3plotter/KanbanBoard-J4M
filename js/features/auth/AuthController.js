@@ -8,8 +8,10 @@ export class AuthController {
             $registerTab: document.getElementById("register-tab"),
             $loginForm: document.getElementById("login-form"),
             $registerForm: document.getElementById("register-form"),
+            $loginEmail: document.getElementById("login-email"),
             $loginPassword: document.getElementById("login-password"),
             $registerUsername: document.getElementById("register-username"),
+            $registerEmail: document.getElementById("register-email"),
             $registerPassword: document.getElementById("register-password"),
             $registerConfirm: document.getElementById("register-confirm"),
             $loginBtn: document.getElementById("login-btn"),
@@ -24,6 +26,31 @@ export class AuthController {
         this.elements.$registerTab.addEventListener("click", () => this.showRegister());
         this.elements.$loginBtn.addEventListener("click", () => this.handleLogin());
         this.elements.$registerBtn.addEventListener("click", () => this.handleRegister());
+        const eyeOpen = `
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+        `;
+        const eyeClosed = `
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                <path d="M3 3l18 18"></path>
+            </svg>
+        `;
+        document.querySelectorAll(".password-toggle").forEach((btn) => {
+            btn.innerHTML = eyeOpen;
+            btn.addEventListener("click", () => {
+                const input = document.getElementById(btn.dataset.target);
+                if (!input) return;
+                const isPassword = input.type === "password";
+                input.type = isPassword ? "text" : "password";
+                btn.innerHTML = isPassword ? eyeClosed : eyeOpen;
+                const label = isPassword ? "Hide password" : "Show password";
+                btn.setAttribute("aria-label", label);
+                btn.setAttribute("title", label);
+            });
+        });
 
         // Check if already logged in
         if (this.authService.isLoggedIn()) {
@@ -48,26 +75,29 @@ export class AuthController {
     }
 
     handleLogin() {
+        const email = this.elements.$loginEmail.value.trim();
         const password = this.elements.$loginPassword.value;
 
-        if (!username || !password) {
+        if (!email || !password) {
             this.showLoginError("Please fill in all fields");
             return;
         }
 
-        if (this.authService.login(password)) {
+        if (this.authService.login(email, password)) {
             window.location.href = "index.html";
         } else {
             this.showLoginError("Invalid email or password");
         }
     }
 
+
     handleRegister() {
         const username = this.elements.$registerUsername.value.trim();
+        const email = this.elements.$registerEmail.value.trim();
         const password = this.elements.$registerPassword.value;
         const confirm = this.elements.$registerConfirm.value;
 
-        if (!username || !password || !confirm) {
+        if (!username ||  !email || !password || !confirm) {
             this.showRegisterError("Please fill in all fields");
             return;
         }
@@ -82,12 +112,13 @@ export class AuthController {
             return;
         }
 
-        if (this.authService.register(username, password)) {
+        if (this.authService.register(username, email, password)) {
             this.showLogin();
             this.elements.$loginPassword.value = "";
             this.elements.$registerUsername.value = "";
             this.elements.$registerPassword.value = "";
             this.elements.$registerConfirm.value = "";
+            this.elements.$registerEmail.value = "";
         } else {
             this.showRegisterError("Username already exists");
         }

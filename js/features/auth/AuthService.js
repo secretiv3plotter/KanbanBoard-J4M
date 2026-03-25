@@ -22,6 +22,7 @@ export class AuthService {
         const user = users[email];
         if (user && user.password === this.hashPassword(password)) {
             localStorage.setItem(this.CURRENT_USER_KEY, email);
+
             return true;
         }
         return false;
