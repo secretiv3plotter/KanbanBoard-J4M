@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Authentication | Kanban Board by J4M</title>
+    <link rel="stylesheet" href="../css/app/styles.css?v=2026-03-26-1">
+    <style>
+        .auth-page {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+
+        .auth-card {
+            width: min(500px, calc(100vw - 2rem));
+            overflow: hidden;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 24px 70px rgba(15, 23, 42, 0.16);
+        }
+
+        .auth-card__header {
+            padding: 1.5rem 1.5rem 0;
+        }
+
+        .auth-switch {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0.35rem;
+            border-radius: 999px;
+            background: #e8eaf3;
+        }
+
+        .auth-switch__pill {
+            position: absolute;
+            top: 0.35rem;
+            left: 0.35rem;
+            width: calc(50% - 0.35rem);
+            height: calc(100% - 0.7rem);
+            border-radius: 999px;
+            background: linear-gradient(135deg, #6c5ce7, #3b82f6);
+            box-shadow: 0 14px 28px rgba(76, 60, 207, 0.26);
+            transition: transform 0.25s ease;
+        }
+
+        .auth-card[data-mode="login"] .auth-switch__pill {
+            transform: translateX(100%);
+        }
+
+        .auth-switch__button {
+            position: relative;
+            z-index: 1;
+            border: 0;
+            background: transparent;
+            padding: 0.9rem 1rem;
+            border-radius: 999px;
+            color: #475569;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .auth-card[data-mode="register"] .auth-switch__button[data-mode="register"],
+        .auth-card[data-mode="login"] .auth-switch__button[data-mode="login"] {
+            color: #fff;
+        }
+
+        .auth-card__body {
+            padding: 1.5rem;
+        }
+
+        .auth-title {
+            margin: 0 0 0.35rem;
+            font-size: 1.9rem;
+        }
+
+        .auth-subtitle,
+        .auth-field__hint,
+        .auth-footnote {
+            color: #475569;
+        }
+
+        .auth-subtitle {
+            margin: 0 0 1.5rem;
+            min-height: 1.25rem;
+        }
+
+        .auth-subtitle[data-tone="error"] {
+            color: #b91c1c;
+        }
+
+        .auth-subtitle[data-tone="success"] {
+            color: #166534;
+        }
+
+        .auth-viewport {
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .auth-slider {
+            display: flex;
+            width: 200%;
+            transition: transform 0.3s ease;
+        }
+
+        .auth-card[data-mode="login"] .auth-slider {
+            transform: translate3d(-50%, 0, 0);
+        }
+
+        .auth-panel {
+            flex: 0 0 50%;
+            width: 50%;
+            min-width: 0;
+            padding: 0 0.75rem;
+            box-sizing: border-box;
+        }
+
+        .auth-form {
+            display: grid;
+            gap: 1rem;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .auth-field {
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .auth-field label {
+            font-weight: 700;
+        }
+
+        .auth-field input {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid rgba(100, 116, 139, 0.35);
+            border-radius: 16px;
+            padding: 0.95rem 1rem;
+            font: inherit;
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .auth-password {
+            position: relative;
+        }
+
+        .auth-password input {
+            width: 100%;
+            padding-right: 3.5rem;
+            box-sizing: border-box;
+        }
+
+        .auth-password__toggle {
+            position: absolute;
+            top: 50%;
+            right: 0.85rem;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border: 0;
+            background: transparent;
+            color: #475569;
+            cursor: pointer;
+        }
+
+        .auth-password__toggle svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .auth-password__toggle .auth-password__icon-hide {
+            display: none;
+        }
+
+        .auth-password__toggle[data-visible="true"] .auth-password__icon-show {
+            display: none;
+        }
+
+        .auth-password__toggle[data-visible="true"] .auth-password__icon-hide {
+            display: block;
+        }
+
+        .auth-field input:focus {
+            outline: 2px solid rgba(108, 92, 231, 0.2);
+            border-color: #6c5ce7;
+        }
+
+        .auth-submit,
+        .auth-google {
+            width: 100%;
+            box-sizing: border-box;
+            border: 0;
+            border-radius: 16px;
+            padding: 0.95rem 1rem;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .auth-submit {
+            background: linear-gradient(135deg, #6c5ce7, #3b82f6);
+            color: #fff;
+            box-shadow: 0 18px 35px rgba(76, 60, 207, 0.28);
+        }
+
+        .auth-google {
+            display: block;
+            background: #fff;
+            color: #0f172a;
+            border: 1px solid rgba(100, 116, 139, 0.25);
+            overflow: hidden;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0.2rem 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(100, 116, 139, 0.25);
+        }
+
+        .auth-footnote {
+            margin: 1rem 0 0;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .auth-footnote button {
+            border: 0;
+            background: transparent;
+            color: #4c3ccf;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width: 560px) {
+            .auth-card__header,
+            .auth-card__body {
+                padding: 1rem;
+            }
+
+            .auth-panel {
+                padding-inline: 0.4rem;
+            }
+        }
+    </style>
+</head>
+<body class="app auth-page">
+    <main id="AUTH_CARD" class="auth-card" data-mode="register">
+        <div class="auth-card__header">
+            <div class="auth-switch" aria-label="Authentication mode switcher">
+                <div class="auth-switch__pill" aria-hidden="true"></div>
+                <button type="button" class="auth-switch__button" data-mode="register">Sign up</button>
+                <button type="button" class="auth-switch__button" data-mode="login">Login</button>
+            </div>
+        </div>
+
+        <div class="auth-card__body">
+            <h1 id="AUTH_TITLE" class="auth-title">Create your account</h1>
+            <p id="AUTH_SUBTITLE" class="auth-subtitle"></p>
+
+            <div class="auth-viewport">
+                <div class="auth-slider">
+                    <section class="auth-panel" aria-labelledby="register-title">
+                        <form id="REGISTER_FORM" class="auth-form">
+                            <div class="auth-field">
+                                <label for="register-email">Email</label>
+                                <input id="register-email" name="email" type="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="auth-field">
+                                <label for="register-username">Username</label>
+                                <input id="register-username" name="username" type="text" placeholder="Choose a username" required>
+                            </div>
+                            <div class="auth-field">
+                                <label for="register-password">Password</label>
+                                <div class="auth-password">
+                                    <input id="register-password" name="password" type="password" placeholder="Create a password" required>
+                                    <button class="auth-password__toggle" type="button" data-password-toggle="register-password" data-visible="false" aria-label="Show password">
+                                        <svg class="auth-password__icon-show" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <svg class="auth-password__icon-hide" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M3 3l18 18"></path>
+                                            <path d="M10.6 10.7A3 3 0 0 0 13.3 13.4"></path>
+                                            <path d="M9.9 5.1A11.4 11.4 0 0 1 12 5c6.5 0 10 7 10 7a16.8 16.8 0 0 1-3.2 3.9"></path>
+                                            <path d="M6.2 6.2A16.1 16.1 0 0 0 2 12s3.5 7 10 7a10.8 10.8 0 0 0 4.1-.8"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="auth-submit" type="submit">Sign up</button>
+                            <div class="auth-divider">or</div>
+                            <div class="auth-google" id="GOOGLE_REGISTER_BTN" data-google-auth="register"></div>
+                        </form>
+                    </section>
+
+                    <section class="auth-panel" aria-labelledby="login-title">
+                        <form id="LOGIN_FORM" class="auth-form">
+                            <div class="auth-field">
+                                <label for="login-identifier">Username / Email</label>
+                                <input id="login-identifier" name="identifier" type="text" placeholder="Email or username" required>
+                            </div>
+                            <div class="auth-field">
+                                <label for="login-password">Password</label>
+                                <div class="auth-password">
+                                    <input id="login-password" name="password" type="password" placeholder="Enter your password" required>
+                                    <button class="auth-password__toggle" type="button" data-password-toggle="login-password" data-visible="false" aria-label="Show password">
+                                        <svg class="auth-password__icon-show" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <svg class="auth-password__icon-hide" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M3 3l18 18"></path>
+                                            <path d="M10.6 10.7A3 3 0 0 0 13.3 13.4"></path>
+                                            <path d="M9.9 5.1A11.4 11.4 0 0 1 12 5c6.5 0 10 7 10 7a16.8 16.8 0 0 1-3.2 3.9"></path>
+                                            <path d="M6.2 6.2A16.1 16.1 0 0 0 2 12s3.5 7 10 7a10.8 10.8 0 0 0 4.1-.8"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="auth-submit" type="submit">Login</button>
+                            <div class="auth-divider">or</div>
+                            <div class="auth-google" id="GOOGLE_LOGIN_BTN" data-google-auth="login"></div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+
+            <p class="auth-footnote">
+                <span id="AUTH_FOOTNOTE_TEXT">Already have an account?</span>
+                <button type="button" id="AUTH_FOOTNOTE_BUTTON">Log in</button>
+            </p>
+        </div>
+    </main>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script type="module" src="../js/pages/auth-page.js?v=2026-03-26-1"></script>
+</body>
+</html>

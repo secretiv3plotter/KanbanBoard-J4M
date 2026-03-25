@@ -1,0 +1,108 @@
+.kanban {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.kanban__controls {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 18px;
+    z-index: 1000;
+}
+
+.kanban__board-shell {
+    width: 100%;
+}
+
+.task-form {
+    width: 100%;
+    background: var(--bg-muted);
+    padding: 12px 14px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-form__meta {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.task-form__greeting {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.kanban-logout-trigger {
+    position: fixed;
+    top: 58px;
+    right: 14px;
+    z-index: 3000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ef4444, #fb7185);
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(239, 68, 68, 0.34);
+}
+
+.kanban-logout-trigger svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.kanban-logout-trigger::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 44px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.92);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.kanban-logout-trigger:hover::after,
+.kanban-logout-trigger:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-2px);
+}
+
+.kanban-logout-trigger:hover,
+.kanban-logout-trigger:focus-visible {
+    filter: brightness(1.03);
+}
+
+@media (max-width: 700px) {
+    .kanban__controls {
+        top: 18px;
+    }
+
+    .kanban-logout-trigger {
+        top: 58px;
+        right: 10px;
+    }
+}

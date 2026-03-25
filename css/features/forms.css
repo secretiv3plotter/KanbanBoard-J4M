@@ -41,7 +41,7 @@
     width: 150px;
 }
 
-.button {
+.action-button {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -51,19 +51,19 @@
     cursor: pointer;
 }
 
-.button--add {
+.action-button--add {
     background: linear-gradient(var(--color-accent), #8e7bff);
     color: #ffffff;
     font-weight: 600;
 }
 
-.button--save {
+.action-button--save {
     background: linear-gradient(var(--color-accent), #8e7bff);
     color: #ffffff;
     font-weight: 600;
 }
 
-.button--delete {
+.action-button--delete {
     background: linear-gradient(#ff5e5e, rgb(255, 135, 135));
     color: #ffffff;
     font-weight: 600;

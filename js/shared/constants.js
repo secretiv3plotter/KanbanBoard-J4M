@@ -1,5 +1,3 @@
-export const STORAGE_KEY = "tasks";
-
 export const MODES = Object.freeze({
     NORMAL: "normal",
     ADD: "add",
