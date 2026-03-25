@@ -4,21 +4,24 @@ export class AuthService {
         this.CURRENT_USER_KEY = "kanban_current_user";
     }
 
-    register(username, password) {
+    register(username, email, password) {
         const users = this.getUsers();
-        if (users[username]) {
+        if (users[email]) {
             return false; // User already exists
         }
-        users[username] = { password: this.hashPassword(password) };
+        users[email] = {
+            username,
+            password: this.hashPassword(password)
+        };
         localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
         return true;
     }
 
-    login(username, password) {
+    login(email, password) {
         const users = this.getUsers();
-        const user = users[username];
+        const user = users[email];
         if (user && user.password === this.hashPassword(password)) {
-            localStorage.setItem(this.CURRENT_USER_KEY, username);
+            localStorage.setItem(this.CURRENT_USER_KEY, email);
             return true;
         }
         return false;

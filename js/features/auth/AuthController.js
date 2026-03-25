@@ -8,7 +8,6 @@ export class AuthController {
             $registerTab: document.getElementById("register-tab"),
             $loginForm: document.getElementById("login-form"),
             $registerForm: document.getElementById("register-form"),
-            $loginUsername: document.getElementById("login-username"),
             $loginPassword: document.getElementById("login-password"),
             $registerUsername: document.getElementById("register-username"),
             $registerPassword: document.getElementById("register-password"),
@@ -49,7 +48,6 @@ export class AuthController {
     }
 
     handleLogin() {
-        const username = this.elements.$loginUsername.value.trim();
         const password = this.elements.$loginPassword.value;
 
         if (!username || !password) {
@@ -57,10 +55,10 @@ export class AuthController {
             return;
         }
 
-        if (this.authService.login(username, password)) {
+        if (this.authService.login(password)) {
             window.location.href = "index.html";
         } else {
-            this.showLoginError("Invalid username or password");
+            this.showLoginError("Invalid email or password");
         }
     }
 
@@ -86,7 +84,6 @@ export class AuthController {
 
         if (this.authService.register(username, password)) {
             this.showLogin();
-            this.elements.$loginUsername.value = username;
             this.elements.$loginPassword.value = "";
             this.elements.$registerUsername.value = "";
             this.elements.$registerPassword.value = "";
