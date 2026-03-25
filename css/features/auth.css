@@ -57,6 +57,11 @@
     margin-bottom: 1.5rem;
 }
 
+.auth-form__row--google {
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
 .auth-form__label {
     display: block;
     margin-bottom: 0.5rem;
