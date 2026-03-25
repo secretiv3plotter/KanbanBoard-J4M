@@ -69,6 +69,17 @@
     font-weight: 600;
 }
 
+.action-button--logout {
+    background: linear-gradient(#6b7280, #9ca3af);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.kanban__footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
 @media (max-width: 880px) {
     .task-form__row {
         justify-content: center;

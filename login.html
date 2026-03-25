@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Kanban Board by J4M</title>
+    <link rel="stylesheet" href="css/app/styles.css">
+    <link rel="stylesheet" href="css/features/auth.css">
+</head>
+<body class="app">
+    <div class="auth-container">
+        <div class="auth-card">
+            <h1 class="auth-title">Kanban Board</h1>
+            <div class="auth-tabs">
+                <button id="login-tab" class="auth-tab auth-tab--active">Login</button>
+                <button id="register-tab" class="auth-tab">Register</button>
+            </div>
+
+            <div id="login-form" class="auth-form">
+                <div class="auth-form__row">
+                    <label class="auth-form__label">Username</label>
+                    <input type="text" id="login-username" class="form-control auth-form__control" placeholder="Enter username">
+                </div>
+                <div class="auth-form__row">
+                    <label class="auth-form__label">Password</label>
+                    <input type="password" id="login-password" class="form-control auth-form__control" placeholder="Enter password">
+                </div>
+                <button type="button" id="login-btn" class="action-button action-button--primary">Login</button>
+                <p id="login-error" class="auth-error"></p>
+            </div>
+
+            <div id="register-form" class="auth-form auth-form--hidden">
+                <div class="auth-form__row">
+                    <label class="auth-form__label">Username</label>
+                    <input type="text" id="register-username" class="form-control auth-form__control" placeholder="Choose username">
+                </div>
+                <div class="auth-form__row">
+                    <label class="auth-form__label">Password</label>
+                    <input type="password" id="register-password" class="form-control auth-form__control" placeholder="Choose password">
+                </div>
+                <div class="auth-form__row">
+                    <label class="auth-form__label">Confirm Password</label>
+                    <input type="password" id="register-confirm" class="form-control auth-form__control" placeholder="Confirm password">
+                </div>
+                <button type="button" id="register-btn" class="action-button action-button--primary">Register</button>
+                <p id="register-error" class="auth-error"></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/features/auth/AuthController.js"></script>
+</body>
+</html>

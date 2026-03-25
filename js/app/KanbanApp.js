@@ -5,6 +5,7 @@ import { AddTaskController } from "../features/tasks/AddTaskController.js";
 import { LocalStorageTaskStore } from "../features/tasks/LocalStorageTaskStore.js";
 import { TaskModalController } from "../features/tasks/TaskModalController.js";
 import { TaskService } from "../features/tasks/TaskService.js";
+import { AuthService } from "../features/auth/AuthService.js";
 import { MODES } from "../shared/constants.js";
 
 export class KanbanApp {
@@ -24,7 +25,8 @@ export class KanbanApp {
             $modalStatusSelect: document.getElementById("MODAL_STATUS"),
             $saveTaskButton: document.getElementById("SAVE_TASK_BTN"),
             $deleteTaskButton: document.getElementById("DELETE_TASK_BTN"),
-            $closeModalButton: document.getElementById("CLOSE_MODAL_BTN")
+            $closeModalButton: document.getElementById("CLOSE_MODAL_BTN"),
+            $logoutButton: document.getElementById("LOGOUT_BTN")
         };
 
         this.state = {
@@ -34,8 +36,9 @@ export class KanbanApp {
             pendingMoveTarget: null
         };
 
-        this.taskStore = new LocalStorageTaskStore();
+        this.taskStore = new LocalStorageTaskStore(this.authService);
         this.taskService = new TaskService(this.taskStore);
+        this.authService = new AuthService();
         this.modal = null;
         this.ui = null;
         this.addTaskController = null;
@@ -44,6 +47,11 @@ export class KanbanApp {
     }
 
     start() {
+        if (!this.authService.isLoggedIn()) {
+            window.location.href = "login.html";
+            return;
+        }
+
         this.ui = new BoardUI({
             state: this.state,
             getTasks: () => this.taskService.getTasks(),
@@ -85,7 +93,14 @@ export class KanbanApp {
         this.keyboardController.init();
         this.shortcutHelpController.init();
 
+        this.elements.$logoutButton.addEventListener("click", () => this.handleLogout());
+
         this.refresh();
+    }
+
+    handleLogout() {
+        this.authService.logout();
+        window.location.href = "login.html";
     }
 
     refresh() {

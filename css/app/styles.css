@@ -5,6 +5,7 @@
 @import url("../features/footer.css");
 @import url("../features/feedback.css");
 @import url("../features/shortcut-help.css");
+@import url("../features/auth.css");
 
 @font-face {
     font-family: "Quicksand";
