@@ -4,8 +4,11 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Kanban Board by J4M</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/app/styles.css?v=2026-03-26-1">
 </head>
 <body class="app">
     <button type="button" id="SHORTCUT_HELP_OPEN_BTN" class="shortcut-help__trigger" aria-label="Show keyboard shortcuts">?</button>
@@ -19,7 +22,7 @@
             <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">N</span> Add task</p>
             <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">E</span> Edit focused task</p>
             <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">M</span> Move mode</p>
-            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">1 / 2 / 3</span> Move task to To-Do / Doing / Done</p>
+            <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">1 / 2 / 3</span> Move focused task to To-Do / Doing / Done</p>
             <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">Tab / Arrow keys</span> Navigate board</p>
             <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">Backspace</span> Delete focused task</p>
             <p class="shortcut-help-modal__item"><span class="shortcut-help-modal__key">Ctrl+Z</span> Undo delete</p>
@@ -28,9 +31,29 @@
         </div>
     </div>
 
+    <script>
+        window.clearKanbanSession = function clearKanbanSession() {
+            localStorage.removeItem("kanban.session");
+            localStorage.removeItem("kanbanUsername");
+            localStorage.removeItem("kanbanEmail");
+            localStorage.removeItem("username");
+            localStorage.removeItem("email");
+        };
+    </script>
+
+    <a id="LOGOUT_BTN" class="kanban-logout-trigger" href="./auth.html" aria-label="Log out" data-tooltip="Log out" onclick="window.clearKanbanSession();">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10 17l1.5-1.5L8.5 12H21v-2H8.5l3-3L10 5l-7 7 7 7z"></path>
+            <path d="M4 4h6V2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h6v-2H4z"></path>
+        </svg>
+    </a>
+
     <div class="kanban">
         <section class="kanban__controls">
             <form class="task-form">
+                <div class="task-form__meta">
+                    <p class="task-form__greeting">Hello, <span id="KANBAN_USERNAME">username</span></p>
+                </div>
                 <div class="task-form__row">
                     <label class="task-form__label">Add a task</label>
                     <input type="text" id="TASK_TITLE" class="form-control form-control--title" placeholder="Task title">
@@ -40,7 +63,7 @@
                         <option value="done">Done</option>
                     </select>
                     <input type="date" id="TASK_DUE" class="form-control form-control--date">
-                    <button type="button" class="button button--add">Add</button>
+                    <button type="button" class="action-button action-button--add">Add</button>
                 </div>
             </form>
         </section>
@@ -106,15 +129,13 @@
             </div>
 
             <div class="task-modal__buttons">
-                <button type="button" id="DELETE_TASK_BTN" class="button button--delete">Delete</button>
-                <button type="button" id="SAVE_TASK_BTN" class="button button--save">Save</button>
+                <button type="button" id="DELETE_TASK_BTN" class="action-button action-button--delete">Delete</button>
+                <button type="button" id="SAVE_TASK_BTN" class="action-button action-button--save">Save</button>
 
             </div>
 
         </div>
-    </div>
-<script type="module" src="js/main.js"></script>
+</div>
+<script type="module" src="../js/app/main.js?v=2026-03-26-1"></script>
 </body>
 </html>
-
-

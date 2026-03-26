@@ -1,29 +1,28 @@
-import { AddTaskController } from "./features/add-task.js";
-import { MODES, STORAGE_KEY } from "./features/constants.js";
-import { KeyboardController } from "./features/keyboard.js";
-import { TaskModalController } from "./features/modal.js";
-import { ShortcutHelpController } from "./features/shortcut-help.js";
-import { LocalStorageTaskStore } from "./features/storage.js";
-import { TaskService } from "./features/tasks.js";
-import { BoardUI } from "./features/ui.js";
+import { BoardUI } from "../features/board/BoardUI.js";
+import { KeyboardController } from "../features/keyboard/KeyboardController.js";
+import { ShortcutHelpController } from "../features/shortcut-help/ShortcutHelpController.js";
+import { AddTaskController } from "../features/tasks/AddTaskController.js";
+import { OfflineTaskStore } from "../features/tasks/OfflineTaskStore.js";
+import { TaskModalController } from "../features/tasks/TaskModalController.js";
+import { TaskService } from "../features/tasks/TaskService.js";
+import { MODES } from "../shared/constants.js";
 
-class KanbanApp {
-    constructor() {
+export class KanbanApp {
+    constructor({ session }) {
+        this.session = session;
         this.elements = {
             $taskForm: document.querySelector(".task-form"),
-            $addTaskButton: document.querySelector(".button--add"),
+            $addTaskButton: document.querySelector(".action-button--add"),
             $taskTitleInput: document.getElementById("TASK_TITLE"),
             $taskColumnSelect: document.getElementById("TASK_COLUMN"),
             $taskDueInput: document.getElementById("TASK_DUE"),
             $shortcutHelpOpenButton: document.getElementById("SHORTCUT_HELP_OPEN_BTN"),
             $shortcutHelpModal: document.getElementById("SHORTCUT_HELP_MODAL"),
             $shortcutHelpCloseButton: document.getElementById("SHORTCUT_HELP_CLOSE_BTN"),
-
             $editModal: document.getElementById("EDIT_MODAL"),
             $modalTitleInput: document.getElementById("MODAL_TITLE"),
             $modalDueInput: document.getElementById("MODAL_DUE"),
             $modalStatusSelect: document.getElementById("MODAL_STATUS"),
-
             $saveTaskButton: document.getElementById("SAVE_TASK_BTN"),
             $deleteTaskButton: document.getElementById("DELETE_TASK_BTN"),
             $closeModalButton: document.getElementById("CLOSE_MODAL_BTN")
@@ -36,8 +35,16 @@ class KanbanApp {
             pendingMoveTarget: null
         };
 
-        this.taskStore = new LocalStorageTaskStore(STORAGE_KEY);
-        this.taskService = new TaskService(this.taskStore);
+        this.taskStore = new OfflineTaskStore(session?.user?.userId);
+        this.taskService = new TaskService({
+            session,
+            taskStore: this.taskStore,
+            onChange: () => {
+                if (this.ui) {
+                    this.refresh();
+                }
+            }
+        });
         this.modal = null;
         this.ui = null;
         this.addTaskController = null;
@@ -45,7 +52,9 @@ class KanbanApp {
         this.shortcutHelpController = null;
     }
 
-    start() {
+    async start() {
+        await this.taskService.init();
+
         this.ui = new BoardUI({
             state: this.state,
             getTasks: () => this.taskService.getTasks(),
@@ -91,11 +100,14 @@ class KanbanApp {
     }
 
     refresh() {
+        if (!this.ui) {
+            return;
+        }
+
         this.ui.renderTasks();
     }
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-    const app = new KanbanApp();
-    app.start();
-});
+    destroy() {
+        this.taskService.destroy();
+    }
+}
